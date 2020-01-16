@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Статистика</title>
+</head>
+<body>
+<div class="container">
+		{% if found != {} %}
+  <h1>Вот что мы нашли:</h1>
+	<table class="table table-hover table-bordered">
+		{% for key, value in found.items() %}
+        <tr>
+			<td>{{key}}</td>
+			{% for word in value %}
+            <td>{{word}}</td>
+			{% endfor %}
+        </tr>
+	{% endfor %}
+	</table>
+</div>
+<div class="container">
+		{% else %}
+	<h1>К сожалению, по Вашему запросу ничего не найдено</h1><br>
+	<center>
+	<div>
+		<a href="http://127.0.0.1:5000/search"><img src="{{url_for('static', filename='otter.jpg')}}" width="40%" height="40%" /></a>
+	</div>
+	</center>
+		{% endif %}
+	<button class="btn btn-default"><a href="http://127.0.0.1:5000/">Вернуться на главную страницу</a></button>
+	<button class="btn btn-default"><a href="http://127.0.0.1:5000/json">Получить данные в формате json</a></button>
+	<button class="btn btn-default"><a href="http://127.0.0.1:5000/search">Вернуться на страницу поиска</a></button>
+
+</div>

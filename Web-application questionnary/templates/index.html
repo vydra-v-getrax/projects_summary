@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Анкета</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Пожалуйста, заполните следующие поля:</h1>
+        <div class="col-sm-6">
+            <form class="form-horizontal" action='/feedback' method='get'>
+                <p><b>Ваш пол: </b></p>
+                <div class="form-group">
+                <label><input type="radio" name="sex" value="женский" required> Женский</label><br>
+                <label><input type="radio" name="sex" value="мужской"> Мужской</label><br>
+                </div>
+
+	  {% for name, tag in quest.items() %}
+                <div class="form-group">
+                <label><b>{{name}}</b><input class="form-control col-sm-2" type="text" name="{{tag}}" required></label>
+                </div>
+	  {% endfor %}
+		<input class="btn" type="submit" value="Отправить" />
+        </form>
+
+        </div>
+    <div class="col-sm-4">
+        <div>
+            <h3>А если Вы хотите посмотреть все результаты, нажмите на выдру: </h3><a href="http://127.0.0.1:5000/stats"><img src="{{url_for('static', filename='otter.jpg')}}" width="150%" height="150%" /></a>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Статистика</title>
+</head>
+<body>
+	<div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+            <h1>Вот что мы собрали:</h1>
+        </div>
+        </div>
+     <div class="row">
+         <div class="col-sm-6">
+            <button class="btn btn-default"><a href="http://127.0.0.1:5000/search">Перейти к поиску по результатам</a></button><br>
+        </div>
+        </div>
+ 	<table class="table table-hover table-bordered">
+		{% for key, value in data.items() %}
+			{% if key == 'Имя' %}
+		<thead>
+		<tr>
+			<th>{{key}}</th>
+			{% for i in value %}
+			<th>{{i}}</th>
+				{% endfor %}
+		</tr>
+		</thead>
+		{% else %}
+		<tr>
+			<td>{{key}}</td>
+			{% for i in value %}
+			<td>{{i}}</td>
+				{% endfor %}
+		</tr>
+		{% endif %}
+	{% endfor %}
+
+		</table>
+	</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+    <h2>Для общения дома используется:</h2>
+    <table class="table table-hover table-bordered">
+        <thead>
+          <th>Выбор языка</th>
+          <th>Процент случаев</th>
+        </thead>
+        <tr>
+            <th>Язык матери</th>
+            <td>{{m_lang_prop}}</td>
+        </tr>
+        <tr>
+            <th>Язык отца</th>
+            <td>{{f_lang_prop}}</td>
+        </tr>
+        <tr>
+            <th>Лингва франка</th>
+            <td>{{new_lang_prop}}</td>
+        </tr>
+        <tr>
+            <th>Язык родной для обоих родителей</th>
+            <td>{{both_lang_prop}}</td>
+        </tr>
+    </table>
+    </div>
+    <div class="col-sm-4">
+      <h2>Родным опрашиваемые называют:</h2>
+        <table class="table table-hover table-bordered">
+        <thead>
+          <th>Выбор языка</th>
+          <th>Процент случаев</th>
+        </thead>
+        <tr>
+            <th>Язык матери</th>
+            <td>{{native_m_prop}}</td>
+        </tr>
+        <tr>
+            <th>Язык отца</th>
+            <td>{{native_f_prop}}</td>
+        </tr>
+        <tr>
+            <th>Язык домашнего общения (совпадает с одни из родительских)</th>
+            <td>{{native_h_prop}}</td>
+        </tr>
+        <tr>
+            <th>Другой (ни одного из родителей, ни домашнего общения)</th>
+            <td>{{native_other_prop}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-sm-4">
+    <h2>Язык обучения опрашиваемого в школе</h2>
+      <table class="table table-hover table-bordered">
+        <thead>
+          <th>Выбор языка</th>
+          <th>Процент случаев</th>
+        </thead>
+        <tr>
+            <th>Совпадает с языком домашнего общения</th>
+            <td>{{sc_h_prop}}</td>
+        </tr>
+        <tr>
+            <th>Совпадает с языком, который опрашиваемый считает родным (если отличается от домашнего)</th>
+            <td>{{sc_n_prop}}</td>
+        </tr>
+        <tr>
+            <th>Другой язык</th>
+            <td>{{sc_o_prop}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="container">
+    <div class="col-sm-4">
+        <h2>Частота использования в домашнем общении:</h2>
+    <img src="{{url_for('static', filename='home_lang_bars.jpg')}}" width="400" height="300" />
+    </div>
+    <div class="col-sm-4">
+        <h2>Встретившиеся родные языки матери:</h2>
+    <img src="{{url_for('static', filename='mum_lang_bars.jpg')}}" width="400" height="300" />
+    </div>
+    <div class="col-sm-4">
+        <h2>Встретившиеся родные языки отца:</h2>
+    <img src="{{url_for('static', filename='dad_lang_bars.jpg')}}" width="400" height="300" />
+    </div>
+</div>
+
+<div class="container" style="margin-top:100px;">
+<h2>Статистика ответов:</h2>
+	<table class="table table-hover table-bordered">
+		{% for key, value in results.items() %}
+		<tr>
+            <th>{{key}}</th>
+            {% for k, v in value.items() %}
+			<td>{{k}}</td>
+            <td>{{v}}</td>
+				{% endfor %}
+
+		</tr>
+	{% endfor %}
+		</table>
+</div>
+<div class="container">
+    <button class="btn btn-default"><a href="http://127.0.0.1:5000/">Вернуться на главную страницу</a></button>
+	<button class="btn btn-default"><a href="http://127.0.0.1:5000/json">Получить данные в формате json</a></button>
+</div>
+</body>
+</html>

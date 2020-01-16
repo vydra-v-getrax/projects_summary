@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск по ответам</title>
+</head>
+<body>
+<center>
+<h1>Поиск по ответам</h1>
+  <div class="container">
+      <form class="form-inline" method='GET' action='/results'>
+          <div class="form-group">
+          <label><h2>Введите язык, который Вы хотели бы найти: </h2><input type='text' name="language" value='' required></label><br>
+          <label><input type="checkbox" name="native"> Это родной язык говорящего</label><br>
+          <input type='submit' value="Отправить"/>
+          </div>
+		</form>
+  </div>
+</center>
+<div class="container">
+    <button class="btn btn-default"><a href="http://127.0.0.1:5000/">Вернуться на главную страницу</a></button>
+	<button class="btn btn-default"><a href="http://127.0.0.1:5000/json">Получить данные в формате json</a></button>
+	<button class="btn btn-default"><a href="http://127.0.0.1:5000/search">Вернуться на страницу поиска</a></button>
+</div>
+</body>
