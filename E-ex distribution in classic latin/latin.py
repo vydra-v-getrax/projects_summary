@@ -8,6 +8,9 @@ import numpy as np
 VOWELS = 'aeiouy'
 
 def compare(ex, e):
+    """
+    get dictionaries of letters after e\ex
+    """
     all_letters = {}
     data = {}
     for key, value in ex.items():
@@ -16,6 +19,7 @@ def compare(ex, e):
         else:
             all_letters[key] = (value, 0)
     return all_letters
+
 
 with open('results_cons.csv', 'a', encoding='utf-8') as t:
     for k, v in sorted(all_letters.items()):
@@ -27,6 +31,7 @@ with open('results_cons.csv', 'a', encoding='utf-8') as t:
                 '%', str(v[0]), str(v[1]))
             t.write(row)
 
+            
 with open('results_vowels.csv', 'a', encoding='utf-8') as t:
     for k, v in sorted(all_letters.items()):
         if k in VOWELS:
@@ -37,7 +42,11 @@ with open('results_vowels.csv', 'a', encoding='utf-8') as t:
                 '%', str(v[0]), str(v[1]))
             t.write(row)
 
+            
 def letters(file):
+    '''
+    search letters after e\ex with regexp
+    '''    
     found_EX = []
     found_E = []
     with open(file, 'r', encoding='utf-8') as f:
@@ -55,7 +64,11 @@ def letters(file):
     E = Counter(found_E)
     return compare(EX, E)
 
+
 def graph():
+    """
+    draw different plots
+    """
     dictC = letters('CEASAR.txt')
     dictT = letters('LIVY.txt')
     freq = {}
@@ -101,6 +114,9 @@ def graph():
     #plt.show()
 
 def plain_text(text):
+    '''
+    remove punctuation etc
+    '''
     text = re.sub('<.+?>', '', text)
     text = re.sub('(\*)|(&.+? )', '', text)
     return text
@@ -121,9 +137,9 @@ def downloadPage(page_url):
     except:
         print("Error at: ", page_url)
 
-# Function crowls pages and downloads text
-
 def getText():
+    # Function crawls web-pages and downloads text
+
     common_url = 'http://www.thelatinlibrary.com/livy/liv.'
     all_text = []
     for i in range(27, 46):
